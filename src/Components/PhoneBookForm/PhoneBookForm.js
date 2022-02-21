@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PhoneBookForm.css";
 
 export default function PhoneBookForm() {
+  const [state, setState] = useState({
+    values: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+    },
+    errors: {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+    },
+  });
+
+  const handleChangeValue = (e) => {
+    const { name, value } = e.target;
+    console.log(e.target.value);
+
+    const newValues = {
+      ...state.values,
+      [name]: value,
+    };
+    const newErrors = { ...state.errors };
+
+    if (value.trim() === "") {
+      newErrors[name] = name.toUpperCase() + " is invalid!";
+    } else {
+      newErrors[name] = "";
+    }
+
+    if (name === "phoneNumber") {
+      const regexPhoneNumber =
+        /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+
+      if (!regexPhoneNumber.test(value)) {
+        newErrors[name] = name.toUpperCase() + " is invalid!";
+      } else {
+        newErrors[name] = "";
+      }
+    }
+
+    setState({
+      values: newValues,
+      errors: newErrors,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div
       className="container-fluid"
@@ -36,25 +86,48 @@ export default function PhoneBookForm() {
           </div>
           <div className="col-12">
             <div className="group">
-              <input type="text" name="firstName" required />
+              <input
+                value={state.values.firstName}
+                type="text"
+                name="firstName"
+                onChange={handleChangeValue}
+                required
+              />
               <span className="highLight" />
               <span className="bar" />
+              <span className="text text-danger">{state.errors.firstName}</span>
               <label>First Name</label>
             </div>
           </div>
           <div className="col-12">
             <div className="group">
-              <input type="text" name="lastName" required />
+              <input
+                value={state.values.lastName}
+                type="text"
+                name="lastName"
+                onChange={handleChangeValue}
+                required
+              />
               <span className="highLight" />
               <span className="bar" />
+              <span className="text text-danger">{state.errors.lastName}</span>
               <label>Last Name</label>
             </div>
           </div>
           <div className="col-12">
             <div className="group">
-              <input type="number" name="phoneNumber" required />
+              <input
+                value={state.values.phoneNumber}
+                type="number"
+                name="phoneNumber"
+                onChange={handleChangeValue}
+                required
+              />
               <span className="highLight" />
               <span className="bar" />
+              <span className="text text-danger">
+                {state.errors.phoneNumber}
+              </span>
               <label>Phone Number</label>
             </div>
           </div>
