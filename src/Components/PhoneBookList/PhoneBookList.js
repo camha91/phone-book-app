@@ -8,7 +8,7 @@ export default function PhoneBookList() {
     return contactList.map((contact, index) => {
       return (
         <tr key={index}>
-          <td>{contact.id}</td>
+          <td>{index + 1}</td>
           <td>{contact.firstName}</td>
           <td>{contact.lastName}</td>
           <td>{contact.phoneNumber}</td>

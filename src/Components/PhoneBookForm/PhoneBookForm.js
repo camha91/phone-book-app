@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./PhoneBookForm.css";
+import { addNewContactAction } from "../../redux/Actions/PhoneBookActions";
 
 export default function PhoneBookForm() {
   const [state, setState] = useState({
@@ -15,9 +17,10 @@ export default function PhoneBookForm() {
     },
   });
 
+  const dispatch = useDispatch();
+
   const handleChangeValue = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.value);
 
     const newValues = {
       ...state.values,
@@ -31,16 +34,16 @@ export default function PhoneBookForm() {
       newErrors[name] = "";
     }
 
-    if (name === "phoneNumber") {
-      const regexPhoneNumber =
-        /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+    // if (name === "phoneNumber") {
+    //   const regexPhoneNumber =
+    //     /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
-      if (!regexPhoneNumber.test(value)) {
-        newErrors[name] = name.toUpperCase() + " is invalid!";
-      } else {
-        newErrors[name] = "";
-      }
-    }
+    //   if (!regexPhoneNumber.test(value)) {
+    //     newErrors[name] = name.toUpperCase() + " is invalid!";
+    //   } else {
+    //     newErrors[name] = "";
+    //   }
+    // }
 
     setState({
       values: newValues,
@@ -48,8 +51,52 @@ export default function PhoneBookForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleAddContact = (e) => {
     e.preventDefault();
+
+    const { values, errors } = state;
+
+    // Create contact
+    const newContact = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phoneNumber: values.phoneNumber,
+    };
+    console.log(newContact);
+
+    let valid = true;
+
+    for (let key in values) {
+      if (values[key] === "") {
+        valid = false;
+      }
+    }
+
+    for (let key in errors) {
+      if (errors[key] !== "") {
+        valid = false;
+      }
+    }
+
+    if (!valid) {
+      alert("Please check all fields!");
+      return;
+    }
+
+    dispatch(addNewContactAction(newContact));
+
+    setState({
+      values: {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+      },
+      errors: {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+      },
+    });
   };
 
   return (
@@ -62,6 +109,7 @@ export default function PhoneBookForm() {
       }}
     >
       <form
+        onSubmit={handleAddContact}
         style={{
           fontSize:
             'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif',
