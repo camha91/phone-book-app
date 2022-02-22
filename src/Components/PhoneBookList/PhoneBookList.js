@@ -1,11 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-export default function PhoneBookList() {
-  const { contactList } = useSelector((state) => state.PhoneBookReducer);
+export default function PhoneBookList(props) {
+  const { displayList } = props;
 
   const renderContactList = () => {
-    return contactList.map((contact, index) => {
+    return displayList.map((contact, index) => {
       return (
         <tr key={index}>
           <td>{index + 1}</td>

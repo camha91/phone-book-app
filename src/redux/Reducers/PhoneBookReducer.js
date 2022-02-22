@@ -6,19 +6,19 @@ const initialState = {
       id: 1,
       firstName: "Mark",
       lastName: "Otto",
-      phoneNumber: 1234567891,
+      phoneNumber: "123-456-7891",
     },
     {
       id: 2,
       firstName: "Jacob",
       lastName: "Thornton",
-      phoneNumber: 3456781239,
+      phoneNumber: "345-678-1239",
     },
     {
       id: 3,
       firstName: "Larry",
       lastName: "Bird",
-      phoneNumber: 4567894567,
+      phoneNumber: "456-789-4567",
     },
   ],
 };

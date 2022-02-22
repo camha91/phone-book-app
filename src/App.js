@@ -1,13 +1,11 @@
-import "./App.css";
 import React from "react";
-import PhoneBookForm from "./Components/PhoneBookForm/PhoneBookForm";
-import PhoneBookList from "./Components/PhoneBookList/PhoneBookList";
+import "./App.css";
+import PhoneBook from "./Components/PhoneBook/PhoneBook";
 
 function App() {
   return (
-    <div className="container-fluid">
-      <PhoneBookForm />
-      <PhoneBookList />
+    <div className="app">
+      <PhoneBook />
     </div>
   );
 }

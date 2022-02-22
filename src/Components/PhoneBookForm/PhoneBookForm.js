@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./PhoneBookForm.css";
 import { addNewContactAction } from "../../redux/Actions/PhoneBookActions";
+import "./PhoneBookForm.css";
 
 export default function PhoneBookForm() {
   const [state, setState] = useState({
@@ -34,16 +34,16 @@ export default function PhoneBookForm() {
       newErrors[name] = "";
     }
 
-    // if (name === "phoneNumber") {
-    //   const regexPhoneNumber =
-    //     /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+    if (name === "phoneNumber") {
+      const regexPhoneNumber =
+        /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
 
-    //   if (!regexPhoneNumber.test(value)) {
-    //     newErrors[name] = name.toUpperCase() + " is invalid!";
-    //   } else {
-    //     newErrors[name] = "";
-    //   }
-    // }
+      if (!regexPhoneNumber.test(value)) {
+        newErrors[name] = name.toUpperCase() + " is invalid!";
+      } else {
+        newErrors[name] = "";
+      }
+    }
 
     setState({
       values: newValues,
@@ -62,7 +62,6 @@ export default function PhoneBookForm() {
       lastName: values.lastName,
       phoneNumber: values.phoneNumber,
     };
-    console.log(newContact);
 
     let valid = true;
 
@@ -119,19 +118,6 @@ export default function PhoneBookForm() {
       >
         <h1 className="text-center mt-0 mb-5">Phone Book Form</h1>
         <div className="row">
-          <div className="input-group mb-5">
-            <div className="form-outline">
-              <input
-                type="search"
-                className="form-control"
-                placeholder="Search..."
-                name="search"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              <i className="fas fa-search" />
-            </button>
-          </div>
           <div className="col-12">
             <div className="group">
               <input
@@ -166,7 +152,7 @@ export default function PhoneBookForm() {
             <div className="group">
               <input
                 value={state.values.phoneNumber}
-                type="number"
+                type="tel"
                 name="phoneNumber"
                 onChange={handleChangeValue}
                 required
