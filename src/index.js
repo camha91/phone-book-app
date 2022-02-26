@@ -8,12 +8,15 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./redux/Reducers/rootReducer";
+import { SnackbarProvider } from "notistack";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+      <App />
+    </SnackbarProvider>
   </Provider>,
   document.getElementById("root")
 );

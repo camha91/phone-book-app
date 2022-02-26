@@ -4,7 +4,7 @@ export default function Search(props) {
   const { value, handleSearch } = props;
 
   return (
-    <div className="input-group mb-5">
+    <div className="input-group mt-5 mb-5">
       <input
         type="search"
         value={value}

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addNewContactAction } from "../../redux/Actions/PhoneBookActions";
 import "./PhoneBookForm.css";
 
-export default function PhoneBookForm() {
+export default function PhoneBookForm(props) {
   const [state, setState] = useState({
     values: {
       firstName: "",
@@ -26,6 +26,7 @@ export default function PhoneBookForm() {
       ...state.values,
       [name]: value,
     };
+
     const newErrors = { ...state.errors };
 
     if (value.trim() === "") {
@@ -107,15 +108,7 @@ export default function PhoneBookForm() {
         justifyContent: "center",
       }}
     >
-      <form
-        onSubmit={handleAddContact}
-        style={{
-          fontSize:
-            'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif',
-          width: 600,
-        }}
-        className="bg-white p-5 m-5"
-      >
+      <form onSubmit={handleAddContact} className="bg-white p-5 m-5">
         <h1 className="text-center mt-0 mb-5">Phone Book Form</h1>
         <div className="row">
           <div className="col-12">

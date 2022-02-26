@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import PhoneBookForm from "../PhoneBookForm/PhoneBookForm";
+import PhoneBookFormMui from "../PhoneBookForm/PhoneBookFormMui";
 import PhoneBookList from "../PhoneBookList/PhoneBookList";
 import Search from "../Search/Search";
 
@@ -26,7 +26,8 @@ export default function PhoneBook() {
 
   return (
     <div className="container-fluid">
-      <PhoneBookForm />
+      {/* <PhoneBookForm /> */}
+      <PhoneBookFormMui />
       <Search value={searchText} handleSearch={handleSearch} />
       <PhoneBookList displayList={filteredData} />
     </div>
