@@ -26,7 +26,6 @@ const formSchema = yup.object().shape({
 
 export default function PhoneBookFormMui() {
   const {
-    register,
     control,
     handleSubmit,
     reset,
@@ -55,11 +54,13 @@ export default function PhoneBookFormMui() {
 
   return (
     <div>
-      <Typography gutterBottom variant="h3" align="center">
-        Phone Book Form
-      </Typography>
-      <Card>
+      <Card
+        style={{ maxWidth: "750px", margin: "0 auto", padding: "20px 5px" }}
+      >
         <CardContent>
+          <Typography gutterBottom variant="h3" align="center">
+            Phone Book Form
+          </Typography>
           <form onSubmit={handleSubmit(handleAddContact)}>
             <Grid container spacing={1}>
               <Grid item xs={12} sm={6}>
@@ -100,7 +101,7 @@ export default function PhoneBookFormMui() {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <Controller
                   name="phoneNumber"
                   control={control}

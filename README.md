@@ -10,13 +10,19 @@
 
 ## Project View
 
+### Bootstrap
+
 ![project photo](phoneBook.png)
+
+### MaterialUI + React Hook Form
+
+![project photo](phoneBookMui.png)
 
 ## Features
 
 - Written in modern React, only functional components with hooks.
 - Used state management redux.
-- Proven, scalable, and easy to understand project structure.
+- Created Form with Material UI, React Hook Form and validation with Yup.
 
 ## How to setup
 
